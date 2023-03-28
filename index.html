@@ -46,30 +46,23 @@
             <!-- chat heading end -->
             <!-- chat content box start -->
             <div class="chat_content_box">
-                <!-- chat conversation box start -->
-                <div class="chat_conversation_box_area">
-                    <div class="chat_conversation_box">
-                        <div class="admin_message">
-                            Hello, how can I help you?
-                        </div>
-                        <div class="user_message conversion_message_box">
-                            <!-- <div class="user_message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, saepe.</div> -->
-                            
-                        </div>
+                <div class="chat-container">
+                    <div class="chat-messages">
+                      <div class="chat-bubble auto-reply-bubble">Hi <span class="timing_function">Good Morning!</span> How can I help you?</div>
+                      <!-- <div class="chat-bubble user-bubble">Hello!</div> -->
                     </div>
-                    <!-- chat conversation box end -->
-                </div>
-                <!-- chat input box start -->
-                <div class="chat_input_box">
-                    <input class="chat_input" type="text" placeholder="Type your message">
-                    <button id="send_btn" type="submit" class="submit_btn"><i class="fas fa-paper-plane"></i></button>
-                </div>
-                <!-- chat input box end -->
+                    <form id="chat-form">
+                      <input id="user_input" type="text" placeholder="Type your message...">
+                      <button id="submit_button" type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                  </div>
+                  
             </div>
             <!-- chat content box end -->
         </div>
     </div>
 
+    
 
 
 

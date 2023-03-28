@@ -13,53 +13,51 @@ minimize_btn.addEventListener("click", function(){
 })
 
 
-let chat_input = document.querySelector(".chat_input");
-let user_message = document.querySelector(".user_message");
-let send_btn = document.querySelector("#send_btn");
-let chat_container = document.querySelector(".chat_conversation_box");
-let admin_message = document.querySelector(".admin_message");
 
-// function to get messages from server
-function chat_user_message(){
-  const message = chat_input.value;
-if (message.trim() !== '') {
-const messageElement = document.createElement('div');
-messageElement.classList.add('user_message');
-messageElement.textContent = message;
-user_message.appendChild(messageElement);
-user_message.scrollTop = user_message.scrollHeight;
-chat_input.value = '';
-}
-}
-// add event listener to button
-send_btn.addEventListener('click', function(){
-  chat_user_message();
-});
-// enter button action
-chat_input.addEventListener("keypress", (event) => {
-  if (event.key === "Enter") {
-    chat_user_message();
-    if(user_message.value = "hi"){
-      // document.querySelector(".admin_message").innerHTML = "Hello, Please tell me, how can I help you sir?";
+const form = document.getElementById('chat-form');
+const chatMessages = document.querySelector('.chat-messages');
+const userValue = document.querySelector('.chat-messages').value;
 
-      // const admin_txt_box = document.createElement("div");
-      // admin_txt_box.classList.add('admin_message');
-      // .appendChild(admin_txt_box);
-      // admin_message.innerHTML = "Text";
-      let admin_txt = "this is text message"
-      const messageElement = document.createElement('div');
-      messageElement.classList.add('admin_message');
-      admin_message.appendChild(messageElement);
-      admin_message.scrollTop = admin_message.scrollHeight;
-      admin_message.value = '';
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const messageInput = e.target.elements[0];
+  const userBubble = document.createElement('div');
+  userBubble.classList.add('chat-bubble', 'user-bubble');
+  userBubble.textContent = messageInput.value.trim();
+  chatMessages.appendChild(userBubble);
+  
+  // auto-reply after a 1 second delay
 
-    }
-    else{
-      alert('nothing');
-    }
+  function admin_auto_reply(admin_message){
+    setTimeout(() => {
+      const autoReplyBubble = document.createElement('div');
+      autoReplyBubble.classList.add('chat-bubble', 'auto-reply-bubble');
+      autoReplyBubble.textContent = admin_message;
+      chatMessages.appendChild(autoReplyBubble);
+    }, 1000);
   }
+  const user_input = document.getElementById("user_input").value;
+
+  switch (user_input) {
+    case 'hi':
+      admin_auto_reply('Hey! Please tell me how can I help you today?')
+      break;
+
+    case 'hlw':
+      admin_auto_reply("yea")
+      break;
+  
+    case 'order':
+      admin_auto_reply("If you want to order our service or hire. Please click hire me button on heading area or visit this link: https://www.fiverr.com/dmoksedul/ Thank you.")
+      break;
+  
+    default:
+      admin_auto_reply("Sorry! I am just demo version I don't response your message. Full version is comming. Thank you!")
+      break;
+  }
+
+  // clear input field after sending message
+  messageInput.value = '';
 });
 
-
-// auto reply command 
 
